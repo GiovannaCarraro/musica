@@ -25,11 +25,17 @@ def pagina_principal():
     #rec os dados
     musicas =  cursor.fetchall()
 
+    #executando a consulta do genero
+    cursor.execute("SELECT nome, icone, cor FROM genero;")
+
+    #rec os dados genero
+    generos = cursor.fetchall()
+
     #fechando a conexao
     conexao.close()
 
 
-    return render_template("principal.html", musicas = musicas)
+    return render_template("principal.html", musicas = musicas, generos = generos)
 
 if __name__ == "__main__":
     app.run(debug=True)
