@@ -91,11 +91,14 @@
                             <label class="label is-small">Categoria</label>
                             <div class="control is-expanded">
                                 <div class="select is-fullwidth">
+                                    {% for genero in generos %}
                                     <select>
+                                
                                         <option>Selecione...</option>
-                                        <option>Rock</option>
-                                        <option>Pop</option>
+                                        <option>{{genero.nome}}</option>                        
+                                        
                                     </select>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

@@ -10,7 +10,7 @@ app = Flask (__name__)
 def pagina_principal():
 
     #rec musicas
-    
+
     musicas = recuperar_musicas()
     #rec generos
     generos = recuperar_generos()
@@ -22,8 +22,10 @@ def pagina_principal():
 def pagina_admin():
     #recup as musicas
     musicas = recuperar_musicas()
+    #rec os generos
+    generos = recuperar_generos()
     #mostra a pag
-    return render_template("administracao.html", musicas = musicas)
+    return render_template("administracao.html", musicas = musicas, generos = generos)
 
 if __name__ == "__main__":
     app.run(debug=True)
