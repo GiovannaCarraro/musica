@@ -13,3 +13,21 @@ def recuperar_musicas():
     conexao.close()
 
     return musicas
+
+def adicionar_musica(cantor:str, nome:str, duracao:str, imagem:str, genero:str) -> bool:
+    """Está função tem o objetivo de adicionar e salvar musicas no banco de dados"""
+
+    try:
+        conexao, cursor = conectar()
+        cursor.execute("""
+        INSERT INTO MUSICA (CANTOR, NOME, DURACAO, URL_IMAGEM, NOME_GENERO)
+        VALUES (%s, %s, %s, %s, %s);
+        """, [cantor, nome, duracao, imagem, genero ])
+        
+        conexao.commit()
+        conexao.close()
+
+        return True
+
+    except:
+        return False    
