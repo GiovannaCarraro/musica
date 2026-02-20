@@ -30,4 +30,9 @@ def adicionar_musica(cantor:str, nome:str, duracao:str, imagem:str, genero:str) 
         return True
 
     except:
-        return False    
+        return False  
+
+def delete():
+    conexao, cursor = conectar()  
+
+    cursor.execute("DELETE FROM Musica WHERE ")
