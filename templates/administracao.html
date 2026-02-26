@@ -97,7 +97,6 @@
                                         {% for genero in generos %}
                                         <option value="{{genero.nome}}">{{genero.nome}}</option>
                                         {% endfor %}                        
-                                        
                                     </select>
                                    
                                 </div>
@@ -127,7 +126,7 @@
                 <tbody>
                     {% for musica in musicas %}
                     <tr>
-                        <td class="has-text-centered has-text-link is-family-monospace">1</td>
+                        <td class="has-text-centered has-text-link is-family-monospace">{{musica.codigo}}</td>
                         <td style="width: 80px;">
                             <figure class="image is-48x48">
                                 <img src="{{musica.url_imagem}}" class="is-rounded" style="object-fit: cover;">
@@ -140,16 +139,24 @@
                         <td class="is-family-monospace has-text-centered">{{musica.duracao}}</td>
                         <td><span class="tag is-dark">{{musica.nome_genero}}</span></td>
                         <td class="has-text-centered">
+                            {% if musica.ativo %}
                             <span class="tag is-success is-light">ATIVO</span>
+                            {% else %}
+                            <span class="tag is-danger is-light">DESATIVADO</span>
+                            {% endif %}
                         </td>
+                        {% for musica in musicas %}
                         <td class="has-text-right px-5">
                             <div class="buttons is-right">
                                 <button class="button is-small is-warning is-light" title="Desativar">
+                                    <i class="fa-solid fa-eye"></i>
                                     <i class="fa-solid fa-eye-slash"></i>
                                 </button>
-                                <button class="button is-small is-danger is-light" title="Excluir">
+                        {% endfor %} 
+                                <a href="/musica/delete/{{musica.codigo}}">class="button is-small is-danger is-light" title="Excluir"
                                     <i class="fa-solid fa-trash"></i>
-                                </button>
+                                </a>
+                                
                             </div>
                             {% endfor %}
                         </td>

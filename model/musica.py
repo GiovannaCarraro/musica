@@ -4,7 +4,7 @@ def recuperar_musicas():
     # passo 1 e 2 ja feito
     conexao, cursor = conectar()
 
-    cursor.execute("SELECT codigo, cantor, duracao, nome, url_imagem, nome_genero FROM musica;")
+    cursor.execute("SELECT codigo, cantor, duracao, nome, url_imagem, nome_genero, ativo FROM musica;")
 
     #rec os dados
     musicas =  cursor.fetchall()
@@ -32,7 +32,28 @@ def adicionar_musica(cantor:str, nome:str, duracao:str, imagem:str, genero:str) 
     except:
         return False  
 
-def delete():
-    conexao, cursor = conectar()  
+def deletar_musica(codigo):
+   try:
+        conexao, cursor = conectar()  
 
-    cursor.execute("DELETE FROM Musica WHERE ")
+        cursor.execute("DELETE FROM Musica WHERE codigo = %s", [codigo])
+
+
+        conexao.commit()
+        conexao.close()
+
+        return True
+   
+   except:
+       return False
+    
+def ativar_musica(codigo: int, status: bool):
+
+    conexao, cursor = conectar()
+
+    cursor.execute("UPDATE Musica, SET ativo = %s, WHERE codigo = %s", [codigo, status])
+
+    conexao.commit()
+    conexao.close()
+    
+   
