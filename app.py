@@ -51,6 +51,8 @@ def excluir_musica(codigo):
 def status_musica(codigo, status):
     ativar_musica(codigo, status)
     return redirect ("/admin")
+
+@app.route("/cadastro.html")
     
 if __name__ == "__main__":
     app.run(debug=True)
