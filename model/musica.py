@@ -1,18 +1,23 @@
 from database.conexao import conectar
 
-def recuperar_musicas():
+def recuperar_musicas(ativos: bool=False):
     # passo 1 e 2 ja feito
-    conexao, cursor = conectar()
+        conexao, cursor = conectar()
 
-    cursor.execute("SELECT codigo, cantor, duracao, nome, url_imagem, nome_genero, ativo FROM musica;")
+        if ativos == False:
+            cursor.execute("SELECT codigo, cantor, duracao, nome, url_imagem, nome_genero, ativos FROM musica;")
 
-    #rec os dados
-    musicas =  cursor.fetchall()
 
-    # fechar a conexão
-    conexao.close()
+        else:
+            cursor.execute("SELECT codigo, cantor, duracao, nome, url_imagem, nome_genero, ativos FROM musica WHERE ativos = 1;")
 
-    return musicas
+        #rec os dados
+        musicas =  cursor.fetchall()
+
+        # fechar a conexão
+        conexao.close()
+
+        return musicas
 
 def adicionar_musica(cantor:str, nome:str, duracao:str, imagem:str, genero:str) -> bool:
     """Está função tem o objetivo de adicionar e salvar musicas no banco de dados"""
@@ -51,7 +56,7 @@ def ativar_musica(codigo: int, status: bool):
 
     conexao, cursor = conectar()
 
-    cursor.execute("UPDATE Musica, SET ativo = %s, WHERE codigo = %s", [codigo, status])
+    cursor.execute("UPDATE Musica SET ativos = %s WHERE codigo = %s", [status, codigo])
 
     conexao.commit()
     conexao.close()

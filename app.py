@@ -14,7 +14,7 @@ def pagina_principal():
 
     #rec musicas
 
-    musicas = recuperar_musicas()
+    musicas = recuperar_musicas(True)
     #rec generos
     generos = recuperar_generos()
 
