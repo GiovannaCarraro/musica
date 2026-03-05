@@ -1,3 +1,3 @@
-from model.musica import deletar_musica
+from model.usuario import autenticar_funcionario
 
-deletar_musica(4)
+autenticar_funcionario()

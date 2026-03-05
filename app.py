@@ -1,12 +1,15 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 import mysql.connector
 from model.musica import recuperar_musicas
 from model.genero import recuperar_generos
 from model.musica import adicionar_musica
 from model.musica import deletar_musica
 from model.musica import ativar_musica
+from model.usuario import cadastrar_funcionario
 
 app = Flask (__name__)
+
+app.secret_key = "chiclete"
 
 @app.route("/home", methods=["GET"])
 @app.route("/")
@@ -52,7 +55,20 @@ def status_musica(codigo, status):
     ativar_musica(codigo, status)
     return redirect ("/admin")
 
-@app.route("/cadastro.html")
+@app.route("/cadastrar")
+def pagina_cadastro():
+    return render_template("cadastrar.html")
+
+@app.route("/cadastrar", methods= ["POST"])
+def logar_usuario():
+    usuario = request.form.get("usuario")
+    senha = request.form.get("senha")
+    if cadastrar_funcionario(usuario, senha):
+        redirect("/cadastrar")
+        session ["usuario"] = "s%"
+        return "você acessou"
+    else:
+        return render_template("cadastrar.html", erro = "Acesso negado!")
     
 if __name__ == "__main__":
     app.run(debug=True)
