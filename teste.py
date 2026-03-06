@@ -1,3 +1,4 @@
-from model.usuario import autenticar_funcionario
+from model.usuario import autenticar_usuario
 
-autenticar_funcionario()
+retorno = autenticar_usuario("giovanna", "123")
+print(retorno)

@@ -140,11 +140,12 @@
                         <td><span class="tag is-dark">{{musica.nome_genero}}</span></td>
                         <td class="has-text-centered">
                             {% if musica.ativo %}
-                            <span class="tag is-success is-light">ATIVO</span>
+                            <a href="/musica/ativar/{{musica.codigo}}/1" class="tag is-success is-light">ATIVO</a>
                             {% else %}
-                            <span class="tag is-danger is-light">DESATIVADO</span>
+                            <a href="/musica/ativar/{{musica.codigo}}/0" class="tag is-danger is-light">DESATIVADO</a>
                             {% endif %}
                         </td>
+
                         <td class="has-text-right px-5">
                             {% if musica.ativo %}
                             <div class="buttons is-right">
@@ -169,8 +170,8 @@
                         </a>
                                 
                             </div>
-                        
-                        </td>
+                         
+                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>

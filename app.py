@@ -5,7 +5,8 @@ from model.genero import recuperar_generos
 from model.musica import adicionar_musica
 from model.musica import deletar_musica
 from model.musica import ativar_musica
-from model.usuario import cadastrar_funcionario
+from model.usuario import cadastrar_usuario
+from model.usuario import autenticar_usuario
 
 app = Flask (__name__)
 
@@ -63,12 +64,24 @@ def pagina_cadastro():
 def logar_usuario():
     usuario = request.form.get("usuario")
     senha = request.form.get("senha")
-    if cadastrar_funcionario(usuario, senha):
+    if cadastrar_usuario(usuario, senha):
         redirect("/cadastrar")
         session ["usuario"] = "s%"
         return "você acessou"
     else:
         return render_template("cadastrar.html", erro = "Acesso negado!")
+    
+@app.route("/login", methods=["POST"])
+def pagina_login():
+    usuario = request.form.get("usuario")
+    senha = request.form.get("senha")
+    login = autenticar_usuario(usuario, senha)
+
+    if login:
+        return redirect("/admin")
+    else:
+        return redirect("/login")
+    
     
 if __name__ == "__main__":
     app.run(debug=True)
