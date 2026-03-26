@@ -6,6 +6,15 @@
     <title>Pagina de Login</title>
 </head>
 <body>
+
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+        {% endwith %}
+    </div>
+
     <form action="/login" method="post">
         
         <div class="field">
