@@ -152,25 +152,24 @@
                         <td class="has-text-right px-5">
                             {% if musica.ativo %}
                             <div class="buttons is-right">
-                               <a href="/musica/ativar/{{musica.codigo}}/0"
-                                class="button is-small is-warning is-light"
-                                title="Ativo">
-                                <i class="fa-solid fa-eye"></i>
+                                <a href="/musica/ativar/{{musica.codigo}}/0"
+                                    class="button is-small is-warning is-light"
+                                    title="Desativar">
+                                    <i class="fa-solid fa-eye-slash"></i>
                                 </a>
-
-                                {% else %}
+                            {% else %}
                                 <a href="/musica/ativar/{{musica.codigo}}/1"
-                                class="button is-small is-warning is-light"
-                                title="Desativar">
-                                <i class="fa-solid fa-eye-slash"></i>
+                                    class="button is-small is-success is-light"
+                                    title="Ativar">
+                                    <i class="fa-solid fa-eye"></i>
                                 </a>
-
                             {% endif %} 
-                        <a href="/musica/delete/{{musica.codigo}}/0" 
-                            class="button is-small is-danger is-light" 
-                            title="Excluir">
-                         <i class="fa-solid fa-trash"></i>
-                        </a>
+
+                            <a href="/musica/delete/{{musica.codigo}}/0" 
+                                class="button is-small is-danger is-light" 
+                                title="Excluir">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
                                 
                             </div>
                          
